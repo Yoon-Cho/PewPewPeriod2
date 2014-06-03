@@ -11,6 +11,7 @@ Norman Li
 Yoon Cho
 ```
 ### Log Link
+(Updates hourly)
 https://stuy.nfshost.com/apcs_final_proj/
 
 ### Proposal Link
