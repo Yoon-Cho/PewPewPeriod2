@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.event.*;
 
-public class Main extends JFrame implements ActionListener{
+public class Main extends JFrame{
 
     protected Container master;
     protected JPanel start;
@@ -20,33 +20,16 @@ public class Main extends JFrame implements ActionListener{
 	master = this.getContentPane();
 	master.setBackground(Color.RED);
 
+
 	start = new Introduction();
-	master.add(BorderLayout.CENTER, start);
-
+	//master.add(BorderLayout.CENTER, start);
     }
 
-    public void actionPerformed(ActionEvent e){
-	Object src = e.getSource();
+    class Introduction extends JPanel{
+	//protected Image bg = new ImageIcon("Intro.jpg").getImage();
     }
 
-    class Introduction extends JPanel implements ActionListener{
-	protected Image bg = new ImageIcon("Intro.jpg").getImage();
-	protected JButton continue;
-
-	public
-
-	public void paintComponent(Graphics g){
-	    super.paintComponent(g);
-	    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-	}
-
-	public void actionPerformed(ActionEvent e){
-	    Object src = e.getSource();
-	}
-
-    }
-
-    class Instructions extends JPanel implements ActionListener{
+    class Instructions extends JPanel{
 	protected Image bg = new ImageIcon("Background.jpg").getImage();
 	protected JButton secrets,start;
 	protected JTextArea instructions;
@@ -86,51 +69,30 @@ public class Main extends JFrame implements ActionListener{
 	    super.paintComponent(g);
 	    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
 	}
-	
-	public void actionPerformed(ActionEvent e){
-	    Object src = e.getSource();
-	}
-
 
     }
 
-    class Game extends JPanel implements ActionListener{
+    class Game extends JPanel{
 	//I HAVE NO IDEA
-	/*
-
-	  Player p = new Player;
-	  p.setCoordinate(500, 100);
-
-
-	 */
     }
 
-    class Death extends JPanel implements ActionListener{
+    class Death extends JPanel{
+	protected JFrame frame;
 	protected Image bg = new ImageIcon("Death.jpg").getImage();
 
 	public void paintComponent(Graphics g){
 	    super.paintComponent(g);
 	    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
 	}
-
-	public Death(){
-	    repaint();
-	}
-
     }
 
-    class Victory extends JPanel implements ActionListener{
+    class Victory extends JPanel{
 	protected Image bg = new ImageIcon("Victory.jpg").getImage();
 	
 	public void paintComponent(Graphics g){
 	    super.paintComponent(g);
 	    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
 	}
-
-	public Victory(){
-	    repaint();
-	}
-
     }
 
     
