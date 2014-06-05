@@ -14,7 +14,8 @@ void setup()
 // Draw Method
 void draw()
 {
-  if ( mousePressed )
+  if (mousePressed){
     exit();
+  }
 }
 
