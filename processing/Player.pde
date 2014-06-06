@@ -1,80 +1,66 @@
-PImage plane;
-Ikaruga me;
-
-void setup() {
-  size(1000, 750);
-  plane = loadImage("Plane.jpg");
-  me = new Ikaruga();
-}
-
-void draw() {
-  background(255);
-  image(plane, me.getX(), me.getY());
-  me.moveCoordinate();
-}
-
-class Ikaruga {
-  int xcor, ycor;
-  int xmove, ymove;
-  int[] coor;
-  boolean space;
-  int bomb;
-  boolean isWhite;
+public class Player extends Unit
+{
+  // Instance Variables
+  private int xcor, ycor;            // X, Y Coordinate
+  private int xmove, ymove;          // Velocity (X, Y Components)
+  private int[] coor;                // Path (Storage of X,Y)
+  private int bomb;                  // # of Bombs
+  private boolean isWhite;           // Is White?
 
   // Constructor
-  Ikaruga() {
-    super(); 
+  public Player() {
+    super();
     xcor = 500;
     ycor = 600;
     bomb = 3;
   }
 
-  void setX(int x) {
-    xcor = x;
-  }
-
-  int getX() {
-    return xcor;
-  }
-
-  void setY(int y) {
-    ycor = y;
-  }
-
-  int getY() {
-    return ycor;
-  }
+  // Accesor Methods
+  public int getX() { return xcor; }
+  public int getY() { return ycor; }
+  
+  // Set Methods
+  public void setX(int x) { xcor = x; }
+  public void setY(int y) { ycor = y; }
 
   void moveCoordinate() {
     xcor += xmove;
     ycor += ymove;
   }
 
+  void keyPressed() {
+    switch(key) {
+      case 'w': case 'W':
+        ymove += 10;
+        break;
+      case 's': case 'S':
+        ymove -= 10;
+        break;
+      case 'a': case 'A':
+        xmove -= 10;
+        break;
+      case 'd': case 'D':
+        xmove += 10;
+        break;
+    }
 
-  boolean getSpace() {
-    return space;
+    switch(keyCode) {
+      case UP:
+        ymove += 10;
+        break;
+      case DOWN:
+        ymove -= 10;
+        break;
+      case LEFT:
+        xmove -= 10;
+        break;
+      case RIGHT:
+        xmove += 10;
+        break;
+    }
   }
 
-  void keyPressed(KeyEvent event) {
-
-    if (key == UP) {
-      ymove += 10;
-    }
-
-    if (key == DOWN) {
-      ymove -= 10;
-    }
-
-    if (key == LEFT) {
-      xmove -= 10;
-    }
-
-    if (key == RIGHT) {
-      xmove += 10;
-    }
-  }
-
-  void keyReleased(KeyEvent event) {
+  void keyReleased() {
 
     if (key == UP) {
       ymove -= 10;

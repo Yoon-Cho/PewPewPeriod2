@@ -1,21 +1,15 @@
 // Setup Method
-void setup()
-{
-  background(0);
-  
-  size(800, 600);
-  
-  Player player = new Player();
-  
-  println("Health: " + player.getHealth());
-  println("Damage: " + player.getDamage());
+/*
+void setup() {
+  size(1000, 750);
+  plane = loadImage("Plane.jpg");
+  me = new Ikaruga();
 }
 
 // Draw Method
-void draw()
-{
-  if (mousePressed){
-    exit();
-  }
+void draw() {
+  background(255);
+  image(plane, me.getX(), me.getY());
+  me.moveCoordinate();
 }
-
+*/

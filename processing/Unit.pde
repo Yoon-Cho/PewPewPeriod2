@@ -1,4 +1,4 @@
-class Unit {
+public class Unit {
 
   protected double health;
   protected double damage;
@@ -39,4 +39,4 @@ class Unit {
     damage += amount;
     return amount;
   }
-
+}
