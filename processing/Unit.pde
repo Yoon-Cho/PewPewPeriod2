@@ -2,12 +2,15 @@ public class Unit {
 
   protected double health;
   protected double damage;
+  protected boolean isWhite;
+  protected int xcor, ycor;  
+  protected int[] hitbox;  
 
   // Constructor
   Unit() {
-
     health = 0;
     damage = 0;
+    hitbox = new int[2];
   }
 
   // Accessor Methods
@@ -39,4 +42,10 @@ public class Unit {
     damage += amount;
     return amount;
   }
+
+  void setHitbox(int h, int w) {
+    hitbox[0] = h;
+    hitbox[1] = w;
+  }
 }
+
