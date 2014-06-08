@@ -1,7 +1,11 @@
 // Variables
 Intro intro;
+ArrayList<Enemy> enemies;
+ArrayList<Projectile> EnemyShots;
+ArrayList<Projectile> MyShots;
 
-// Set FullScrene = On
+
+// Set FullScreen = On
 boolean sketchFullScreen() {
   return true;
 }
@@ -12,6 +16,9 @@ void setup()
 {
   size(displayWidth, displayHeight, P2D);
   intro = new Intro(displayWidth, displayHeight);
+  enemies = new ArrayList<Enemy>();
+  EnemyShots = new ArrayList<Projectile>();
+  MyShots = new ArrayList<Projectile>();
 }
 
 // Draw Method

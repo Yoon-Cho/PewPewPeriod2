@@ -14,22 +14,6 @@ public class Player extends Unit
     bomb = 3;
   }
 
-  // Accesor Methods
-  public int getX() { 
-    return xcor;
-  }
-  public int getY() { 
-    return ycor;
-  }
-
-  // Set Methods
-  public void setX(int x) { 
-    xcor = x;
-  }
-  public void setY(int y) { 
-    ycor = y;
-  }
-
   void moveCoordinate() {
     xcor += xmove;
     ycor += ymove;
