@@ -1,18 +1,25 @@
+// Variables
+Intro intro;
+
+// Set FullScrene = On
+boolean sketchFullScreen() {
+  return true;
+}
+
+
 // Setup Method
-
-PImage plane;
-Player me;
-
-void setup() {
-  size(1000, 750);
-  plane = loadImage("Plane.jpg");
-  me = new Player();
+void setup()
+{
+  size(displayWidth, displayHeight, P2D);
+  intro = new Intro(displayWidth, displayHeight);
 }
 
 // Draw Method
-void draw() {
-  background(0);
-  image(plane, me.getX(), me.getY());
-  me.moveCoordinate();
+void draw()
+{
+  intro.transition();
+  
+  if (mousePressed)
+    exit();
 }
 
