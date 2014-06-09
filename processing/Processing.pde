@@ -25,7 +25,7 @@ void setup()
 void draw()
 {
   intro.transition();
-  
+
   if (mousePressed)
     exit();
 }

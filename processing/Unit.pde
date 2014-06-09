@@ -93,6 +93,13 @@ public class Unit {
     return amount;
   }
 
+  void swap() {
+    if (isWhite == true) 
+      isWhite = false;
+    else
+      isWhite = true;
+  }
+
   void setHitbox(int h, int w) {
     hitbox[0] = h;
     hitbox[1] = w;

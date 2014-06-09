@@ -3,7 +3,10 @@ public class Enemy extends Unit
   // Constructor
   public Enemy() { 
     super();
-    isWhite = true;
+    if (Math.random() > 50)
+      isWhite = true;
+    else
+      isWhite = false;
   }
 
   void shoot(int numB) {

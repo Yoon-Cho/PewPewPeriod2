@@ -5,6 +5,8 @@ public class Player extends Unit
   private int xmove, ymove;          // Velocity (X, Y Components)
   private int[] coor;                // Path (Storage of X,Y)
   private int bomb;                  // # of Bombs           
+  private boolean space;
+  private int level;
 
   // Constructor
   public Player() {
@@ -12,11 +14,19 @@ public class Player extends Unit
     xcor = 500;
     ycor = 600;
     bomb = 3;
+    space = false;
+    level = 1;
   }
 
   void moveCoordinate() {
     xcor += xmove;
     ycor += ymove;
+  }
+
+  void shoot() {
+    if (space = true) {
+      MyShots.add(new Projectile(xcor, ycor, isWhite, level));
+    }
   }
 
   void keyPressed() {
@@ -73,6 +83,9 @@ public class Player extends Unit
     case 'D':
       xmove -= 10;
       break;
+    case ' ':
+      space = false;
+      break;
     }
 
     switch(keyCode) {
@@ -96,6 +109,15 @@ public class Player extends Unit
     //B = bomb
     //P = pause - not in the player class
     //S = switch color (are we doing ikaruga?)
+    switch(key) {
+    case 'q':
+    case 'Q':
+      swap();
+      break;
+    case ' ':
+      space = true;
+      break;
+    }
   }
 }
 
