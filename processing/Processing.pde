@@ -10,7 +10,6 @@ boolean sketchFullScreen() {
   return true;
 }
 
-
 // Setup Method
 void setup()
 {

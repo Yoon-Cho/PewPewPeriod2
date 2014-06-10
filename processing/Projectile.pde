@@ -13,11 +13,11 @@ public class Projectile extends Unit {
    180        0
    */
 
-  public Projectile(int x, int y, boolean color, int level) {
+  public Projectile(int x, int y, boolean colour, int level) {
     super();
     xcor = x;
     ycor = y;
-    isWhite = color;
+    isWhite = colour;
     angle = 90;
     if (level == 1)
       type1();

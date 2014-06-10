@@ -33,7 +33,7 @@ public class Intro
 
     if ( tint < 255 )
     {
-      tint++;
+      tint += 5;
       return true;
     } else
       return false;
