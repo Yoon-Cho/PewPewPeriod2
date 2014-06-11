@@ -1,5 +1,6 @@
 // Variables
 Intro intro;
+Death death;
 ArrayList<Enemy> enemies;
 ArrayList<Projectile> EnemyShots;
 ArrayList<Projectile> MyShots;
@@ -15,6 +16,7 @@ void setup()
 {
   size(displayWidth, displayHeight, P2D);
   intro = new Intro(displayWidth, displayHeight);
+  death = new Death(displayWidth, displayHeight);
   enemies = new ArrayList<Enemy>();
   EnemyShots = new ArrayList<Projectile>();
   MyShots = new ArrayList<Projectile>();

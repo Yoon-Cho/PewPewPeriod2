@@ -25,6 +25,14 @@ public class Unit {
     this.tall = tall;
   }
 
+  void setWidth(int wide) {
+    this.wide = wide;
+  }
+
+  void setHeight(int tall) {
+    this.tall = tall;
+  }
+
   public int[] getHitbox() { //This will be used for both projectiles and units
     hitbox = new int[4];
     //(Max x, Min x, Max y, Min y)
@@ -39,14 +47,24 @@ public class Unit {
     int damage = 0;
     int[] box = getHitbox();
     for (int unit = 0; unit < others.size (); unit++) {
-      if ((others.get(unit).getX() <= box[0] && others.get(unit).getX() >= box[1]) && (others.get(unit).getY() <= box[2] && others.get(unit).getY() >= box[3])) { 
-        damage+= others.get(unit).getDamage();
-        //        others.get(unit).removeFromGrid();
+      Projectile object = others.get(unit);
+      if ((object.getX() <= box[0] && object.getX() >= box[1]) && (object.getY() <= box[2] && object.getY() >= box[3])) { 
+        damage += object.getDamage();
+        if (this.getHealth() <= 0) {
+          if (this instanceof Player)
+            death.transition();
+          else
+            object.removeFromGrid(unit);
+        }
       }
     }
     return damage;
   }
 
+  public void removeFromGrid(int order) {
+    //Make a death animation - "explosion"
+    enemies.remove(order);
+  }
 
   // Accessor Methods
   public double getHealth() { 
@@ -98,11 +116,6 @@ public class Unit {
       isWhite = false;
     else
       isWhite = true;
-  }
-
-  void setHitbox(int h, int w) {
-    hitbox[0] = h;
-    hitbox[1] = w;
   }
 }
 
