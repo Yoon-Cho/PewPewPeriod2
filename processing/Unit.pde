@@ -7,6 +7,7 @@ public class Unit {
   protected int wide;
   protected int tall;
   protected int[] hitbox;
+  protected boolean isDead;
 
   // Constructor
 
@@ -23,6 +24,15 @@ public class Unit {
     this.ycor = ycor;
     this.wide = wide;
     this.tall = tall;
+    isDead = false;
+  }
+
+  void death() {
+    isDead = true;
+  }
+
+  boolean getDead() {
+    return isDead;
   }
 
   void setWidth(int wide) {
@@ -54,16 +64,23 @@ public class Unit {
           if (this instanceof Player)
             death.transition();
           else
-            object.removeFromGrid(unit);
+            object.death;
         }
       }
     }
     return damage;
   }
 
-  public void removeFromGrid(int order) {
-    //Make a death animation - "explosion"
-    enemies.remove(order);
+  public int contact(ArrayList<Enemy> others) {
+    int damage = 0;
+    int[] box = getHitbox();
+    for (int unit = 0; unit < others.size (); unit++) {
+      Projectile object = others.get(unit);
+      if ((object.getX() <= box[0] && object.getX() >= box[1]) && (object.getY() <= box[2] && object.getY() >= box[3])) { 
+        death.transition();
+      }
+    }
+    return damage;
   }
 
   // Accessor Methods

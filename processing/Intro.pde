@@ -3,6 +3,7 @@ public class Intro
   // Instance Variables
   private PImage intro;
   private PImage menu;
+  private PImage game;
   private int tint;
 
   // Constructors
