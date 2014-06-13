@@ -64,18 +64,18 @@ public class Unit {
           if (this instanceof Player)
             death.transition();
           else
-            object.death;
+            object.death();
         }
       }
     }
     return damage;
   }
 
-  public int contact(ArrayList<Enemy> others) {
+  public int collision(ArrayList<Enemy> others) {
     int damage = 0;
     int[] box = getHitbox();
     for (int unit = 0; unit < others.size (); unit++) {
-      Projectile object = others.get(unit);
+      Enemy object = others.get(unit);
       if ((object.getX() <= box[0] && object.getX() >= box[1]) && (object.getY() <= box[2] && object.getY() >= box[3])) { 
         death.transition();
       }

@@ -29,6 +29,14 @@ public class Player extends Unit
     }
   }
 
+  void explode(){
+   bomb--;
+   for (unit: enemies)
+    enemies.remove(unit);
+   for (shot: EnemyShots)
+    EnemyShots.remove(shot);
+  }
+
   void keyPressed() {
     switch(key) {
     case 'w': 

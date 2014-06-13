@@ -30,14 +30,14 @@ void draw()
   if (mousePressed)
     exit();
     
-  removeFromGrid(){};
+  removeFromGrid();
   
 }
 
 
 public void removeFromGrid() {
-  for (int unit = 0; unit < enemies.getSize (); unit++) {
-    if (!getDead()) {
+  for (int unit = 0; unit < enemies.size(); unit++) {
+    if (!enemies.get(unit).getDead()) {
       explode(enemies.get(unit).getX(),enemies.get(unit).getY());
       enemies.remove(unit);
       unit--;    

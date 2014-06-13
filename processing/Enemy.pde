@@ -7,7 +7,7 @@ public class Enemy extends Unit
    
    
    
-   270
+        270
    */
 
 
@@ -20,6 +20,20 @@ public class Enemy extends Unit
     else
       isWhite = false;
   }
+
+/*
+Ideas for enemies:
+Chargers - use best search?
+Regular shooters that spawn randomly
+Spinners - They shoot projectiles that move in a random manner towards you (Bad search thingy)
+Large ships - shoot aimed projectiles directly
+Spreaders - shoot spreading waves
+Desecrators - leave projectiles after death
+Mr.Z - multiple attacks - circle waves of shots
+                        - random death road generator
+                        - super beam
+                        - create more enemies
+*/
 
   void shoot(int numB) {
     Projectile[] shots = new Projectile[numB];
