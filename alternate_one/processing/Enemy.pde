@@ -1,11 +1,13 @@
 public class Enemy extends Unit
 {
-  // Constructor
-  public Enemy(int health, int damage, int xcor, int ycor, int xmove, int ymove)
+  // Constructors
+  public Enemy()
   {
-    super(health, damage, xcor, ycor, xmove, ymove);
-    
-    _image = loadImage("enemy.jpg");
-    _image.resize(100, 100);
+    super( 1, 1, (int) random(0, width + 1), (int) random(0, height / 4), 0, 0, 100, 100, "enemy.jpg" );
+  }
+  
+  public Enemy(int health, int damage, int xcor, int ycor, int xmove, int ymove, int w, int h, String image)
+  {
+    super(health, damage, xcor, ycor, xmove, ymove, w, h, image);
   }
 }

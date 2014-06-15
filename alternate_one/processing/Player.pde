@@ -3,13 +3,17 @@ public class Player extends Unit
   // Instance Variables
   private int _bombs;
   
-  // Constructor
-  public Player(int health, int damage, int xcor, int ycor, int xmove, int ymove, int bombs)
+  // Constructors
+  public Player()
   {
-    super(health, damage, xcor, ycor, xmove, ymove);
+    super(1, 1, width / 2, height * 3 / 4, 100, 100, 100, 100, "player.jpg");
     
-    _image = loadImage("player.jpg");
-    _image.resize(100, 100);
+    _bombs = 5;
+  }
+  
+  public Player(int health, int damage, int xcor, int ycor, int xmove, int ymove, int w, int h, String image, int bombs)
+  {
+    super(health, damage, xcor, ycor, xmove, ymove, w, h, image);
     
     _bombs = bombs;
   }
