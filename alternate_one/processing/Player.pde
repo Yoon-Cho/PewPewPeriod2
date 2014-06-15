@@ -1,0 +1,25 @@
+public class Player extends Unit
+{
+  // Instance Variables
+  private int _bombs;
+  
+  // Constructor
+  public Player(int health, int damage, int xcor, int ycor, int xmove, int ymove, int bombs)
+  {
+    super(health, damage, xcor, ycor, xmove, ymove);
+    
+    _image = loadImage("player.jpg");
+    _image.resize(100, 100);
+    
+    _bombs = bombs;
+  }
+  
+  // Accesor Method
+  public int getBombs() { return _bombs; }
+  
+  // Modify Bombs Method
+  public void modifyBombs(int change) { _bombs += change; }
+  
+  // Set Bombs Method
+  public void setBombs(int bombs) { _bombs = bombs; }
+}
