@@ -13,7 +13,7 @@ public class Unit {
 
   Unit() {
     health = 1;
-    damage = 0;
+    damage = 1;
   }
 
   Unit(int health, int damage, boolean isWhite, int xcor, int ycor, int wide, int tall) {
@@ -61,11 +61,14 @@ public class Unit {
       if ((object.getX() <= box[0] && object.getX() >= box[1]) && (object.getY() <= box[2] && object.getY() >= box[3])) { 
         damage += object.getDamage();
         if (this.getHealth() <= 0) {
-          if (this instanceof Player)
-            death.transition();
-          else
-            object.death();
-        }
+          if (this instanceof Player) {
+            if (this.getIsWhite() == object.getIsWhite())
+              this.setPower(this.getPower()+1);
+            else
+              death.transition();
+          }
+        } else
+          object.death();
       }
     }
     return damage;
@@ -104,6 +107,10 @@ public class Unit {
   }
   public void setY(int y) { 
     ycor = y;
+  }
+
+  public boolean getIsWhite() {
+    return isWhite;
   }
 
   // Modify Health Method3

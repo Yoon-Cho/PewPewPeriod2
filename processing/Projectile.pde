@@ -19,12 +19,6 @@ public class Projectile extends Unit {
     ycor = y;
     isWhite = colour;
     angle = 90;
-    if (level == 1)
-      type1();
-    if (level == 2)
-      type2();
-    if (level == 3)
-      type3();
   }
 
   void setAngle(int a) {
@@ -33,34 +27,80 @@ public class Projectile extends Unit {
 
   //THIS SECTION IS FOR PLAYER PROJECTILE/UPGRADES
 
+  //White Shot 
+  //Black Shot
+
   //The standard laser bullet that we all know and love
-  void type1() {
-    type = loadImage("type1.jpg");
-    angle = 90;
+  public class type1 extends Projectile {
+    type1(boolean isWhite) {
+      super();
+      damage = 1;
+      angle = 90;
+      if (isWhite == true) {
+        type == loadImage("type1W.jpg");
+      } else {
+        type == loadImage("type1B.jpg");
+      }
+    }
   }
 
-  //Two bullets are better than one
-  void type2() {
-    type = loadImage("type2.jpg");
-    angle = 90;
+  //Lightning Bolt
+  //Black Missle
+  public class type2 extends Projectile {
+    type2(boolean isWhite) {
+      super();
+      damage = 2;
+      angle = 90;
+      if (isWhite == true) {
+        type == loadImage("type2W.jpg");
+      } else {
+        type == loadImage("type2B.jpg");
+      }
+    }
   }
 
-  //
-  void type3() {
-    type = loadImage("type3.jpg");
+  //Shiny Orb
+  //Black Orb
+  public class type3 extends Projectile {
+    type3(boolean isWhite) {
+      super();
+      damage = 3;
+      if (isWhite == true) {
+        type == loadImage("type3W.jpg");
+      } else {
+        type == loadImage("type3B.jpg");
+      }
+    }
   }
 
-  //
-  void type4() {
-    type = loadImage("type4.jpg");
+  //Exploding Star
+  //Black Hole
+  public class type4 extends Projectile {
+    type4(boolean isWhite) {
+      super();
+      damage = 4;
+      if (isWhite == true) {
+        type == loadImage("type4W.jpg");
+      } else {
+        type == loadImage("type4B.jpg");
+      }
+    }
   }
 
-  //
-  void type5() {
-    type = loadImage("type5.jpg");
+  //Swedish Fish
+  //Spongebob's Face
+  public class type5 extends Projectile {
+    type5(boolean isWhite) {
+      super();
+      damage = 5;
+      if (isWhite == true) {
+        type == loadImage("type5W.jpg");
+      } else {
+        type == loadImage("type5B.jpg");
+      }
+    }
   }
 
   //SECTION FOR ENEMY PROJECTILES. BRAINSTORM ENEMIES LATER
-  
 }
 

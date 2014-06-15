@@ -21,9 +21,9 @@ public class Death
   {
     background(death);
   }
-  
-  public void restart(){
-   draw(); 
+
+  public void restart() {
+    draw();
   }
 }
 

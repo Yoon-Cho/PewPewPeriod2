@@ -7,6 +7,7 @@ public class Player extends Unit
   private int bomb;                  // # of Bombs           
   private boolean space;
   private int level;
+  private int power;
 
   // Constructor
   public Player() {
@@ -16,6 +17,23 @@ public class Player extends Unit
     bomb = 3;
     space = false;
     level = 1;
+    power = 1;
+    //Power and types
+    /*
+     Type1 = 1
+     Type2 = 20
+     Type3 = 50
+     Type4 = 100
+     Type5 = 300
+     */
+  }
+
+  int getPower() {
+    return power;
+  }
+
+  void setPower(int power) {
+    this.power = power;
   }
 
   void moveCoordinate() {
@@ -29,12 +47,12 @@ public class Player extends Unit
     }
   }
 
-  void explode(){
-   bomb--;
-   for (unit: enemies)
-    enemies.remove(unit);
-   for (shot: EnemyShots)
-    EnemyShots.remove(shot);
+  void explode() {
+    bomb--;
+    for (unit : enemies)
+      enemies.remove(unit);
+    for (shot : EnemyShots)
+      EnemyShots.remove(shot);
   }
 
   void keyPressed() {
