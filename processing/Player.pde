@@ -1,149 +1,29 @@
 public class Player extends Unit
 {
   // Instance Variables
-
-  private int xmove, ymove;          // Velocity (X, Y Components)
-  private int[] coor;                // Path (Storage of X,Y)
-  private int bomb;                  // # of Bombs           
-  private boolean space;
-  private int level;
-  private int power;
-
-  // Constructor
-  public Player() {
-    super();
-    xcor = 500;
-    ycor = 600;
-    bomb = 3;
-    space = false;
-    level = 1;
-    power = 1;
-    //Power and types
-    /*
-     Type1 = 1
-     Type2 = 20
-     Type3 = 50
-     Type4 = 100
-     Type5 = 300
-     */
+  private int _bombs;
+  
+  // Constructors
+  public Player()
+  {
+    super(1, 1, width / 2, height * 3 / 4, 100, 100, 100, 100, "player.jpg");
+    
+    _bombs = 5;
   }
-
-  int getPower() {
-    return power;
+  
+  public Player(int health, int damage, int xcor, int ycor, int xmove, int ymove, int w, int h, String image, int bombs)
+  {
+    super(health, damage, xcor, ycor, xmove, ymove, w, h, image);
+    
+    _bombs = bombs;
   }
-
-  void setPower(int power) {
-    this.power = power;
-  }
-
-  void moveCoordinate() {
-    xcor += xmove;
-    ycor += ymove;
-  }
-
-  void shoot() {
-    if (space = true) {
-      MyShots.add(new Projectile(xcor, ycor, isWhite, level));
-    }
-  }
-
-  void explode() {
-    bomb--;
-    for (unit : enemies)
-      enemies.remove(unit);
-    for (shot : EnemyShots)
-      EnemyShots.remove(shot);
-  }
-
-  void keyPressed() {
-    switch(key) {
-    case 'w': 
-    case 'W':
-      ymove += 10;
-      break;
-    case 's': 
-    case 'S':
-      ymove -= 10;
-      break;
-    case 'a': 
-    case 'A':
-      xmove -= 10;
-      break;
-    case 'd': 
-    case 'D':
-      xmove += 10;
-      break;
-    }
-
-    switch(keyCode) {
-    case UP:
-      ymove += 10;
-      break;
-    case DOWN:
-      ymove -= 10;
-      break;
-    case LEFT:
-      xmove -= 10;
-      break;
-    case RIGHT:
-      xmove += 10;
-      break;
-    }
-  }
-
-  void keyReleased() {
-    switch(key) {
-    case 'w': 
-    case 'W':
-      ymove -= 10;
-      break;
-    case 's': 
-    case 'S':
-      ymove += 10;
-      break;
-    case 'a': 
-    case 'A':
-      xmove += 10;
-      break;
-    case 'd': 
-    case 'D':
-      xmove -= 10;
-      break;
-    case ' ':
-      space = false;
-      break;
-    }
-
-    switch(keyCode) {
-    case UP:
-      ymove -= 10;
-      break;
-    case DOWN:
-      ymove += 10;
-      break;
-    case LEFT:
-      xmove += 10;
-      break;
-    case RIGHT:
-      xmove -= 10;
-      break;
-    }
-  }
-
-  void keyTyped(KeyEvent event) {
-    //List of Keys
-    //B = bomb
-    //P = pause - not in the player class
-    //S = switch color (are we doing ikaruga?)
-    switch(key) {
-    case 'q':
-    case 'Q':
-      swap();
-      break;
-    case ' ':
-      space = true;
-      break;
-    }
-  }
+  
+  // Accesor Method
+  public int getBombs() { return _bombs; }
+  
+  // Modify Bombs Method
+  public void modifyBombs(int change) { _bombs += change; }
+  
+  // Set Bombs Method
+  public void setBombs(int bombs) { _bombs = bombs; }
 }
-

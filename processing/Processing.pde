@@ -1,49 +1,72 @@
+import ddf.minim.*;
+
 // Variables
-Intro intro;
-Death death;
-ArrayList<Enemy> enemies;
-ArrayList<Projectile> EnemyShots;
-ArrayList<Projectile> MyShots;
+Intro _intro;
+Menu _menu;
 
+Minim _minim;
+AudioPlayer _player;
 
-// Set FullScreen = On
-boolean sketchFullScreen() {
-  return true;
-}
+int _state = -1;
+
+Game _game;
+
+// FullScreen = On
+boolean sketchFullScreen() { return true; }
 
 // Setup Method
 void setup()
 {
   size(displayWidth, displayHeight, P2D);
-  intro = new Intro(displayWidth, displayHeight);
-  death = new Death(displayWidth, displayHeight);
-  enemies = new ArrayList<Enemy>();
-  EnemyShots = new ArrayList<Projectile>();
-  MyShots = new ArrayList<Projectile>();
+  background(0);
+  
+  _intro = new Intro(width, height);
+  _menu = new Menu(width, height);
+  _minim = new Minim(this);
+  _game = new Game();
 }
 
 // Draw Method
 void draw()
 {
-  intro.transition();
-
-  if (mousePressed)
-    exit();
-
-  removeFromGrid();
-}
-
-public void removeFromGrid() {
-  for (int unit = 0; unit < enemies.size (); unit++) {
-    if (!enemies.get(unit).getDead()) {
-      explode(enemies.get(unit).getX(), enemies.get(unit).getY());
-      enemies.remove(unit);
-      unit--;
-    }
+  switch(_state)
+  {
+    case 0: if ( _intro.fadeIn() );
+            else { _state++; }
+            break;
+    case 1: if ( _intro.fadeOut() );
+            else
+            {
+              _player = _minim.loadFile("menu_theme.mp3");
+              _player.play();
+              _player.loop();
+              _state++;
+            }
+            break;
+    case 2: if ( _menu.fadeIn() );
+            else { _state++; }
+            break;
+    case 3: _menu.display();
+            switch( _menu.selected() )
+            {
+              case 0: _state++;
+                      break;
+            }
+            break;
+    case 4: if ( _menu.fadeOut() );
+            else { _state++; }
+            break;
+    case 5: _game.play();
+            break;
+    default: if (mousePressed) {exit();}
+             break;
   }
 }
 
-public void explode(int xcor, int ycor) {
-  //load images
+// Keyboard Input
+void keyPressed()
+{
+  _game.keyPressed();
 }
+
 

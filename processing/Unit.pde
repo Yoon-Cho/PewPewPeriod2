@@ -1,145 +1,62 @@
-public class Unit {
-
-  protected double health;
-  protected double damage;
-  protected boolean isWhite;
-  protected int xcor, ycor;
-  protected int wide;
-  protected int tall;
-  protected int[] hitbox;
-  protected boolean isDead;
+public class Unit
+{
+  // Instance Variables
+  protected int _health;
+  protected int _damage;
+  protected PImage _image;
+  protected int _xcor;
+  protected int _ycor;
+  protected int _xmove;
+  protected int _ymove;
+  protected int _width;
+  protected int _height;
 
   // Constructor
-
-  Unit() {
-    health = 1;
-    damage = 1;
+  public Unit(int health, int damage, int xcor, int ycor, int xmove, int ymove, int w, int h, String image)
+  {
+    _health = health;
+    _damage = damage;
+    _xcor = xcor;
+    _ycor = ycor;
+    _xmove = xmove;
+    _ymove = ymove;
+    _width = w;
+    _height = h;
+    
+    _image = loadImage(image);
+    _image.resize(w, h);
   }
-
-  Unit(int health, int damage, boolean isWhite, int xcor, int ycor, int wide, int tall) {
-    this.health = health;
-    this.damage = damage;
-    this.isWhite = isWhite;
-    this.xcor = xcor;
-    this.ycor = ycor;
-    this.wide = wide;
-    this.tall = tall;
-    isDead = false;
-  }
-
-  void death() {
-    isDead = true;
-  }
-
-  boolean getDead() {
-    return isDead;
-  }
-
-  void setWidth(int wide) {
-    this.wide = wide;
-  }
-
-  void setHeight(int tall) {
-    this.tall = tall;
-  }
-
-  public int[] getHitbox() { //This will be used for both projectiles and units
-    hitbox = new int[4];
-    //(Max x, Min x, Max y, Min y)
-    hitbox[0] = xcor + wide/2;
-    hitbox[1] = xcor - wide/2;
-    hitbox[2] = ycor + tall/2;
-    hitbox[3] = ycor - tall/2;
-    return hitbox;
-  }
-
-  public int contact(ArrayList<Projectile> others) {
-    int damage = 0;
-    int[] box = getHitbox();
-    for (int unit = 0; unit < others.size (); unit++) {
-      Projectile object = others.get(unit);
-      if ((object.getX() <= box[0] && object.getX() >= box[1]) && (object.getY() <= box[2] && object.getY() >= box[3])) { 
-        damage += object.getDamage();
-        if (this.getHealth() <= 0) {
-          if (this instanceof Player) {
-            if (this.getIsWhite() == object.getIsWhite())
-              this.setPower(this.getPower()+1);
-            else
-              death.transition();
-          }
-        } else
-          object.death();
-      }
-    }
-    return damage;
-  }
-
-  public int collision(ArrayList<Enemy> others) {
-    int damage = 0;
-    int[] box = getHitbox();
-    for (int unit = 0; unit < others.size (); unit++) {
-      Enemy object = others.get(unit);
-      if ((object.getX() <= box[0] && object.getX() >= box[1]) && (object.getY() <= box[2] && object.getY() >= box[3])) { 
-        death.transition();
-      }
-    }
-    return damage;
-  }
-
+  
   // Accessor Methods
-  public double getHealth() { 
-    return health;
-  }
-  public double getDamage() { 
-    return damage;
-  }
-
-  public int getX() { 
-    return xcor;
-  }
-  public int getY() { 
-    return ycor;
-  }
-
+  public int getHealth() { return _health; }
+  public int getDamage() { return _damage; }
+  public int getXCor() { return _xcor; }
+  public int getYCor() { return _ycor; }
+  public int getXMove() { return _xmove; }
+  public int getYMove() { return _ymove; }
+  public int getWidth() { return _width; }
+  public int getHeight() { return _height; }
+  public PImage getImage() { return _image; }
+  
+  // Modify Methods
+  public void modifyHealth(int change) { _health += change; }
+  public void modifyDamage(int change) { _damage += change; }
+  public void modifyXCor(int change) { _xcor += change; }
+  public void modifyYCor(int change) { _ycor += change; }
+  public void modifyXMove(int change) { _xmove += change; }
+  public void modifyYMove(int change) { _ymove += change; }
+  public void modifyWidth(int change) { _width += change; }
+  public void modifyHeight(int change) { _height += change; }
+  
   // Set Methods
-  public void setX(int x) { 
-    xcor = x;
-  }
-  public void setY(int y) { 
-    ycor = y;
-  }
-
-  public boolean getIsWhite() {
-    return isWhite;
-  }
-
-  // Modify Health Method3
-  /* Parameter(s): double amount -> Amount of Change
-   Domain: (-inf, inf)
-   Returns:      amount (param 1)
-   */
-  public double modifyHealth(double amount)
-  {
-    health += amount;
-    return amount;
-  }
-
-  // Modify Damage Method
-  /* Parameter(s): double amount -> Amount of Change
-   Domain: (-inf, inf)
-   Returns:      amount (param 1)
-   */
-  public double modifyDamage(double amount)
-  {
-    damage += amount;
-    return amount;
-  }
-
-  void swap() {
-    if (isWhite == true) 
-      isWhite = false;
-    else
-      isWhite = true;
-  }
+  public void setHealth(int health) { _health = health; }
+  public void setDamage(int damage) { _damage = damage; }
+  public void setXCor(int xcor) { _xcor = xcor; }
+  public void setYCor(int ycor) { _ycor = ycor; }
+  public void setXMove(int xmove) { _xmove = xmove; }
+  public void setYMove(int ymove) { _ymove = ymove; }
+  public void setWidth(int w) { _width = w; }
+  public void setHeight(int h) { _height = h; }
+  public void setImage(PImage image) { _image = image; }
 }
 

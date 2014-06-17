@@ -1,106 +1,36 @@
-public class Projectile extends Unit {
-
-  //Things to add:
-  //All the different images
-  //types of bullets
-  //hitboxes?
-
-  PImage type;
-  int angle;
-  /*
-        90
-   
-   180        0
-   */
-
-  public Projectile(int x, int y, boolean colour, int level) {
-    super();
-    xcor = x;
-    ycor = y;
-    isWhite = colour;
-    angle = 90;
+public class Projectile extends Unit
+{
+  // Constructor
+  public Projectile(int damage, int xcor, int ycor, int xmove, int ymove, int w, int h, String image)
+  {
+    super(0, damage, xcor, ycor, xmove, ymove, w, h, image);
   }
 
-  void setAngle(int a) {
-    angle = a;
-  }
-
-  //THIS SECTION IS FOR PLAYER PROJECTILE/UPGRADES
-
-  //White Shot 
-  //Black Shot
-
-  //The standard laser bullet that we all know and love
-  public class type1 extends Projectile {
-    type1(boolean isWhite) {
-      super();
-      damage = 1;
-      angle = 90;
-      if (isWhite == true) {
-        type == loadImage("type1W.jpg");
-      } else {
-        type == loadImage("type1B.jpg");
-      }
+  // Bullet1 Projectile
+  public class bullet1 extends Projectile
+  {
+    public bullet1(int xcor, int ycor)
+    {
+      super(1, xcor, ycor, 0, 5, 5, 5, "bullet1.jpg");
     }
   }
-
-  //Lightning Bolt
-  //Black Missle
-  public class type2 extends Projectile {
-    type2(boolean isWhite) {
-      super();
-      damage = 2;
-      angle = 90;
-      if (isWhite == true) {
-        type == loadImage("type2W.jpg");
-      } else {
-        type == loadImage("type2B.jpg");
-      }
+  
+  // Bullet2 Projectile
+  public class bullet2 extends Projectile
+  {
+    public bullet2(int xcor, int ycor)
+    {
+      super(2, xcor, ycor, 0, 5, 7, 7, "bullet2.jpg");
     }
   }
-
-  //Shiny Orb
-  //Black Orb
-  public class type3 extends Projectile {
-    type3(boolean isWhite) {
-      super();
-      damage = 3;
-      if (isWhite == true) {
-        type == loadImage("type3W.jpg");
-      } else {
-        type == loadImage("type3B.jpg");
-      }
+  
+  // Bullet3 Projectile
+  public class bullet3 extends Projectile
+  {
+    public bullet3(int xcor, int ycor)
+    {
+      super(3, xcor, ycor, 0, 5, 10, 10, "bullet3.jpg");
     }
   }
-
-  //Exploding Star
-  //Black Hole
-  public class type4 extends Projectile {
-    type4(boolean isWhite) {
-      super();
-      damage = 4;
-      if (isWhite == true) {
-        type == loadImage("type4W.jpg");
-      } else {
-        type == loadImage("type4B.jpg");
-      }
-    }
-  }
-
-  //Swedish Fish
-  //Spongebob's Face
-  public class type5 extends Projectile {
-    type5(boolean isWhite) {
-      super();
-      damage = 5;
-      if (isWhite == true) {
-        type == loadImage("type5W.jpg");
-      } else {
-        type == loadImage("type5B.jpg");
-      }
-    }
-  }
-
-  //SECTION FOR ENEMY PROJECTILES. BRAINSTORM ENEMIES LATER
 }
 

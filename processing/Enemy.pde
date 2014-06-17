@@ -1,185 +1,109 @@
 public class Enemy extends Unit
 {
-  int angle;
-
-  /*
-  180          360
-   
-   
-   
-         270
-   */
-
-
-  // Constructor
-  public Enemy() { 
-    super();
-    angle = 270;
-    if (Math.random() > 50)
-      isWhite = true;
-    else
-      isWhite = false;
+  // Constructors
+  public Enemy()
+  {
+    super( 1, 1, (int) random(0, width + 1), (int) random(0, height / 4), 0, 0, 100, 100, "enemy.jpg" );
   }
 
-  public Enemy(int x, int y) {
-    this();
-    setX(x);
-    setY(y);
+  public Enemy(int health, int damage, int xcor, int ycor, int xmove, int ymove, int w, int h, String image)
+  {
+    super(health, damage, xcor, ycor, xmove, ymove, w, h, image);
   }
 
-  public Enemy(boolean isWhite) { 
-    super();
-    angle = 270;
-    this.isWhite = isWhite;
-  }
-
-  public Enemy(boolean isWhite, int x, int y) {
-    this(isWhite);
-    setX(x);
-    setY(y);
-  }
-
-
-  public class Dud extends Enemy {
-    Dud(boolean isWhite, int x, int y) {
-      super(isWhite, x, y);
-      health = 1;
-      wide = 75;
-      tall = 75;
+  // Dud Class Enemy
+  public class Dud extends Enemy
+  {
+    public Dud(int xcor, int ycor)
+    {
+      super(1, 1, xcor, ycor, 0, 0, 25, 25, "Dud.jpg");
     }
   }
 
-  public class Charger extends Enemy {
-    Charger(int x,int y) {
-      super(x,y);
-      health = 1;
-      wide = 50;
-      tall = 50;
-    }
-    public void movement() {
-      //Best Search
+  // Charger Class Enemy
+  public class Charger extends Enemy
+  {
+    public Charger(int xcor, int ycor)
+    {
+      super(1, 1, xcor, ycor, /*use the angle to player formula*/, 50, 50, "Charger.jpg");
     }
   }
 
-  public class Boomerang extends Enemy {
-    Boomerang(int x,int y, int scale) {
-      super(x,y);
-      health = 5*scale;
-      wide = 75;
-      tall = 75;
+  // Boomerang Class Enemy
+  public class Boomerang extends Enemy
+  {
+    public Boomerang(int xcor, int ycor, int scale)
+    {
+      super(5*scale, 1, xcor, ycor, 0, 0, 75, 75, "Boomerang.jpg");
     }
   }
 
-  public class Shooter extends Enemy {
-    Shooter(int x,int y, int scale) {
-      super(x,y);
-      health = 10*scale;
-      wide = 50;
-      tall = 75;
+  // Shooter Class Enemy
+  public class Shooter extends Enemy
+  {
+    public Shooter(int xcor, int ycor, int scale)
+    {
+      super(10*scale, 1, xcor, ycor, 0, -3, 50, 75, "Shooter.jpg");
     }
-    public void movement() {
-      //Straight Path
+    
+    public void shoot()
+    {
+      add(new bullet3( xcor, ycor));
     }
+  }
+
+  // Spinner Class Enemy
+  public class Spinner extends Enemy
+  {
+    public Spinner(int xcor, int ycor, int scale)
+    {
+      super(30*scale, 1, xcor, ycor/*random movement*/50, 50, "Spinner.jpg");
+    }
+  }
+
+  // Waver Class Enemy
+  public class Waver extends Enemy
+  {
+    public Waver(int xcor, int ycor, int scale)
+    {
+      super(100*scale, 1, xcor, ycor, 0, -3, 50, 50, "Spinner.jpg");
+    }
+    
     public void shoot() {
-      add(new type3(isWhite), xcor, ycor);
+      add(new Projectile.bullet2(xcor-20, ycor);
+      add(new Projectile.bullet2(xcor-15, ycor);
+      add(new Projectile.bullet2(xcor-10, ycor);
+      add(new Projectile.bullet2(xcor-5, ycor);
+      add(new Projectile.bullet2(xcor, ycor);
+      add(new Projectile.bullet2(xcor+5, ycor);
+      add(new Projectile.bullet2(xcor+10, ycor);
+      add(new Projectile.bullet2(xcor+15, ycor);
+      add(new Projectile.bullet2(xcor+20, ycor);
     }
   }
-  public class Spinner extends Enemy {
-    Spinner(int x,int y, int scale) {
-      super(x,y);
-      health = 30*scale;
-      wide = 100;
-      tall = 100;
+  public class Desecrator extends Enemy
+  {
+    public Desecrator(int xcor, int ycor, int scale)
+    {
+      super(10*scale, 1, xcor, ycor, /*AI*/20, 20, "Desecrator.jpg");
     }
-    public void movement() {
-      //random movement
-    }
-  }
-  public class Waver extends Enemy {
-    Waver(int x,int y, int scale) {
-      super(x,y);
-      health = 100*scale;
-      wide = 100;
-      tall = 50;
-    }
-    public void movement() {
-      //none
-    }
-    public void shoot() {
-      add(new type2(isWhite), xcor-20, ycor);
-      add(new type2(isWhite), xcor-15, ycor);
-      add(new type2(isWhite), xcor-10, ycor);
-      add(new type2(isWhite), xcor-5, ycor);
-      add(new type2(isWhite), xcor, ycor);
-      add(new type2(isWhite), xcor+5, ycor);
-      add(new type2(isWhite), xcor+10, ycor);
-      add(new type2(isWhite), xcor+15, ycor);
-      add(new type2(isWhite), xcor+20, ycor);
-    }
-  }
-  public class Desecrator extends Enemy {
-    Desecrator(int x,int y, int scale) {
-      super();
-      health = 10*scale;
-      wide = 200;
-      tall = 50;
-    }
-    public void movement() {
-      //Best Search
-    }
-    public void shoot() {
+    
+    public void shoot()
+    {
       //hmm?
     }
   }
-  public class Zamansky extends Enemy {
-    Zamansky(int scale) {
-      super();
-      xcor = 400;
-      ycor = 300;
-      health = 9001*scale;
-      wide = 200;
-      tall = 200;
+  
+  // Zamansky Class Enemy (Final Boss)
+  public class Zamansky extends Enemy
+  {
+    public Zamansky(int scale)
+    {
+      super(500*scale, 1, 400, 300, 0, 0, 200, 200, "Mr.Z.jpg");
     }
-    public void movement() {
-      //none?
-      //spawns other stuff
-    }
-
+    
     public void attack1() {
     }//2,3,4,5,etc.
-  }
-
-  /*
-Ideas for enemies:
-   Dud - Dud
-   Charger - use best search?
-   Boomerang - go forward and back
-   Regular shooter that spawn randomly
-   Spinners - They move around in random paths
-   Wavers - shoot waves of projectiles
-   Large ships - shoot aimed projectiles directly
-   Desecrators - leave projectiles after death
-   Mr.Z - multiple attacks - circle waves of shots
-   - random death road generator
-   - super beam
-   - create more enemies
-   */
-
-  void shoot(int numB) {
-    Projectile[] shots = new Projectile[numB];
-  }
-
-  double findAngle(Player me) {
-    int x1 = this.getX();
-    int y1 = this.getY();
-    int x2 = me.getX();
-    int y2 = me.getY();
-    int deltaX = me.getX() - this.getX();
-    int deltaY = me.getY() - this.getY();
-    double answer = (double)Math.toDegrees(Math.atan2(deltaX, deltaY));
-    if (answer < 0)
-      angle += 360;
-    return answer;
   }
 }
 

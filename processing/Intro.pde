@@ -1,43 +1,48 @@
 public class Intro
 {
-  // Instance Variables
-  private PImage intro;
-  private PImage menu;
-  private PImage game;
-  private int tint;
-
-  // Constructors
-  public Intro()
-  {
-    intro = loadImage("intro.jpg");
-    menu = loadImage("menu.jpg");
-
-    intro.resize(800, 600);
-    menu.resize(800, 600);
-  }
-
+  // Instance Variable(s)
+  private PImage _intro;
+  private int _tint;
+  
+  // Constructor
   public Intro(int w, int h)
   {
-    this();
-
-    intro.resize(w, h);
-    menu.resize(w, h);
+    _intro = loadImage("intro.jpg");
+    
+    _intro.resize(w, h);
   }
-
-  // Transition Method
-  public boolean transition()
+  
+  // Fade In Method
+  public boolean fadeIn()
   {
-    background(intro);
-
-    tint(255, 255, 255, tint);
-    image(menu, 0, 0);
-
-    if ( tint < 255 )
-    {
-      tint += 5;
-      return true;
-    } else
+    background(0);
+    
+    tint(255, _tint);
+    image(_intro, 0, 0);
+    
+    if (_tint >= 255)
       return false;
+    else
+    {
+      _tint += 1;
+      return true;
+    }
+  }
+  
+  // Fade Out Method
+  public boolean fadeOut()
+  {
+    background(0);
+    tint(255, _tint);
+    image(_intro, 0, 0);
+    
+    if (_tint <= 0)
+      return false;
+    else
+    {
+      _tint -= 1;
+      return true;
+    }
   }
 }
 
