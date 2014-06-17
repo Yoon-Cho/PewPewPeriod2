@@ -244,6 +244,27 @@ public class Game
     _enemies.removeAll(remove);
   }
   
+  // Fire on Player Method
+  private void fireOnPlayer()
+  {
+    for (Enemy e : _enemies)
+    {
+      if ( int( random(100) ) < 35 )
+      {
+        Projectile p = new Projectile( e.getDamage(), e.getXCor(), e.getYCor(), ( p.getXCor() - e.getXCor() ) / 10, ( p.getYCor() - e.getYCor() ) / 10, 50, 50, "projectile.jpg" );
+        
+        PGraphics pg = 
+  
+  // Angle to Player Method
+  private float angleToPlayer(Enemy e)
+  {
+    int deltaX = e.getXCor() - _player.getXCor();
+    int deltaY = e.getYCor() - _player.getYCor();
+    float deg = degrees( atan2( deltaY, deltaX ) );
+    deg = deg * -1;
+    return deg;
+  }
+
   // Game Over Method
   private boolean gameOver()
   {

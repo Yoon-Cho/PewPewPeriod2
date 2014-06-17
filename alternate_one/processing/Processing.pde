@@ -7,7 +7,7 @@ Menu _menu;
 Minim _minim;
 AudioPlayer _player;
 
-int _state = 5;
+int _state = -1;
 
 Game _game;
 
