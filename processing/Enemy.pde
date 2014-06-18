@@ -66,31 +66,19 @@ public class Enemy extends Unit
   {
     public Waver(int xcor, int ycor, int scale)
     {
-      super(100*scale, 1, xcor, ycor, 0, -3, 50, 50, "Spinner.jpg");
+      super(100*scale, 1, xcor, ycor, 0, -3, 150, 65, "Waver.jpg");
     }
     
     public void shoot() {
-      add(new Projectile.bullet2(xcor-20, ycor);
-      add(new Projectile.bullet2(xcor-15, ycor);
-      add(new Projectile.bullet2(xcor-10, ycor);
-      add(new Projectile.bullet2(xcor-5, ycor);
-      add(new Projectile.bullet2(xcor, ycor);
-      add(new Projectile.bullet2(xcor+5, ycor);
-      add(new Projectile.bullet2(xcor+10, ycor);
-      add(new Projectile.bullet2(xcor+15, ycor);
-      add(new Projectile.bullet2(xcor+20, ycor);
-    }
-  }
-  public class Desecrator extends Enemy
-  {
-    public Desecrator(int xcor, int ycor, int scale)
-    {
-      super(10*scale, 1, xcor, ycor, /*AI*/20, 20, "Desecrator.jpg");
-    }
-    
-    public void shoot()
-    {
-      //hmm?
+      add(new Projectile.bulletW(xcor-20, ycor);
+      add(new Projectile.bulletW(xcor-15, ycor);
+      add(new Projectile.bulletW(xcor-10, ycor);
+      add(new Projectile.bulletW(xcor-5, ycor);
+      add(new Projectile.bulletW(xcor, ycor);
+      add(new Projectile.bulletW(xcor+5, ycor);
+      add(new Projectile.bulletW(xcor+10, ycor);
+      add(new Projectile.bulletW(xcor+15, ycor);
+      add(new Projectile.bulletW(xcor+20, ycor);
     }
   }
   
@@ -99,7 +87,7 @@ public class Enemy extends Unit
   {
     public Zamansky(int scale)
     {
-      super(500*scale, 1, 400, 300, 0, 0, 200, 200, "Mr.Z.jpg");
+      super(500*scale, 1, 400, 300, 0, 0, 200, 200, "MrZ.jpg");
     }
     
     public void attack1() {
