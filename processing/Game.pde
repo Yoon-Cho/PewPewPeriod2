@@ -1,6 +1,7 @@
 public class Game
 {
   // Instance Variables
+  private Ticks _ticks;
   private Player _player;
   private ArrayList<Enemy> _enemies;
   private ArrayList<Projectile> _playerProjectiles;
@@ -9,14 +10,20 @@ public class Game
   // Constructor
   public Game()
   {
+    _ticks = new Ticks(this);
     _enemies = new ArrayList<Enemy>();
     _playerProjectiles = new ArrayList<Projectile>();
     _enemyProjectiles = new ArrayList<Projectile>();
     
     _player = new Player();
-    for (int i = 0; i < 5; i++)
-      _enemies.add( new Enemy() );
   }
+  
+  // Accessor Methods
+  public Ticks getTicks() { return _ticks; }
+  public Player getPlayer() { return _player; }
+  public ArrayList<Enemy> getEnemies() { return _enemies; }
+  public ArrayList<Projectile> getPlayerProjectiles() { return _playerProjectiles; }
+  public ArrayList<Projectile> getEnemyProjectiles() { return _enemyProjectiles; }
   
   // Play Method
   public void play()
@@ -25,10 +32,12 @@ public class Game
       exit();
     
     background(0);
+    _ticks.process();
     checkBoundaries();
     removeDeadEnemies();
     hitPlayer();
     hitEnemy();
+    fireOnPlayer();
     move();
     display();
   }
@@ -100,18 +109,17 @@ public class Game
     _enemyProjectiles.removeAll(remove);
     
     // Enemy Boundaries
+    ArrayList<Enemy> remove1 = new ArrayList<Enemy>();
+    
     for (Enemy e : _enemies)
     {
-      if ( e.getXCor() > width)
-        e.setXCor(width - 50);
-      else if ( e.getXCor() < 0 )
-        e.setXCor(50);
-      
-      if ( e.getYCor() > height )
-        e.setYCor(height - 50);
-      else if ( e.getYCor() < 0 )
-        e.setYCor(50);
+      if ( ( (e.getXCor() > width) || (e.getXCor() < 0) ) ||
+           ( (e.getYCor() > height) || (e.getYCor() < 0) )
+         )
+         remove1.add(e);
     }
+    
+    _enemies.removeAll(remove1);
     
     // Player Boundaries
     if ( _player.getXCor() > width)
@@ -244,39 +252,28 @@ public class Game
     _enemies.removeAll(remove);
   }
   
-  // Fire on Player Method
+  // Add Methods
+  public void addEnemy(Enemy e) { _enemies.add(e); }
+  public void addEnemyProjectile(Projectile p) { _enemyProjectiles.add(p); }
+
+  // Fire On Players
   private void fireOnPlayer()
   {
     for (Enemy e : _enemies)
     {
-      if ( int( random(100) ) < 35 )
-      {
-        Projectile p = new Projectile( e.getDamage(), e.getXCor(), e.getYCor(), ( p.getXCor() - e.getXCor() ) / 10, ( p.getYCor() - e.getYCor() ) / 10, 50, 50, "projectile.jpg" );
-        
-        PGraphics pg = 
-  
-  // Angle to Player Method
-  private float angleToPlayer(Enemy e)
-  {
-    int deltaX = e.getXCor() - _player.getXCor();
-    int deltaY = e.getYCor() - _player.getYCor();
-    float deg = degrees( atan2( deltaY, deltaX ) );
-    deg = deg * -1;
-    return deg;
+      if ( int( random(100) ) < 10 )
+        e.shoot(this);
+    }
   }
 
   // Game Over Method
   private boolean gameOver()
   {
     boolean response = false;
+    
     if ( _player.getHealth() <= 0 )
     {
       print("You Lose.");
-      response = true;
-    }
-    else if ( _enemies.size() == 0 )
-    {
-      print("You Win!");
       response = true;
     }
     

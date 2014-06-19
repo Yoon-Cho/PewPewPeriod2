@@ -11,21 +11,28 @@ public class Enemy extends Unit
     super(health, damage, xcor, ycor, xmove, ymove, w, h, image);
   }
 
+  // Shoot Method
+  public void shoot(Game game)
+  {
+    Projectile p = new Projectile();
+    game.addEnemyProjectile(p.new bullet1(_xcor, _ycor) );
+  }
+
   // Dud Class Enemy
   public class Dud extends Enemy
   {
     public Dud(int xcor, int ycor)
     {
-      super(1, 1, xcor, ycor, 0, 0, 25, 25, "Dud.jpg");
+      super(1, 1, xcor, ycor, 0, 0, 25, 25, "Dud.png");
     }
   }
 
   // Charger Class Enemy
   public class Charger extends Enemy
   {
-    public Charger(int xcor, int ycor)
+    public Charger(int xcor, int ycor, Game game)
     {
-      super(1, 1, xcor, ycor, /*use the angle to player formula*/, 50, 50, "Charger.jpg");
+      super(1, 1, xcor, ycor, ( _game.getPlayer().getXCor() - xcor ) / 5, ( _game.getPlayer().getYCor() - ycor ) / 5, 50, 50, "Charger.png");
     }
   }
 
@@ -34,7 +41,7 @@ public class Enemy extends Unit
   {
     public Boomerang(int xcor, int ycor, int scale)
     {
-      super(5*scale, 1, xcor, ycor, 0, 0, 75, 75, "Boomerang.jpg");
+      super(5*scale, 1, xcor, ycor, 0, 0, 75, 75, "Boomerang.png");
     }
   }
 
@@ -43,12 +50,13 @@ public class Enemy extends Unit
   {
     public Shooter(int xcor, int ycor, int scale)
     {
-      super(10*scale, 1, xcor, ycor, 0, -3, 50, 75, "Shooter.jpg");
+      super(10*scale, 1, xcor, ycor, 0, -3, 50, 75, "Shooter.png");
     }
     
-    public void shoot()
+    public void shoot(Game game)
     {
-      add(new bullet3( xcor, ycor));
+      Projectile p = new Projectile();
+      game.addEnemyProjectile( p.new bullet3( _xcor, _ycor));
     }
   }
 
@@ -57,7 +65,7 @@ public class Enemy extends Unit
   {
     public Spinner(int xcor, int ycor, int scale)
     {
-      super(30*scale, 1, xcor, ycor/*random movement*/50, 50, "Spinner.jpg");
+      super(30*scale, 1, xcor, ycor, int( random(5, 16) ), int( random(5, 16) ), 50, 50, "Spinner.png");
     }
   }
 
@@ -66,19 +74,22 @@ public class Enemy extends Unit
   {
     public Waver(int xcor, int ycor, int scale)
     {
-      super(100*scale, 1, xcor, ycor, 0, -3, 150, 65, "Waver.jpg");
+      super(100*scale, 1, xcor, ycor, 0, -3, 150, 65, "Waver.png");
     }
     
-    public void shoot() {
-      add(new Projectile.bulletW(xcor-20, ycor);
-      add(new Projectile.bulletW(xcor-15, ycor);
-      add(new Projectile.bulletW(xcor-10, ycor);
-      add(new Projectile.bulletW(xcor-5, ycor);
-      add(new Projectile.bulletW(xcor, ycor);
-      add(new Projectile.bulletW(xcor+5, ycor);
-      add(new Projectile.bulletW(xcor+10, ycor);
-      add(new Projectile.bulletW(xcor+15, ycor);
-      add(new Projectile.bulletW(xcor+20, ycor);
+    public void shoot(Game game)
+    {
+      Projectile p = new Projectile();
+      
+      game.addEnemyProjectile( p.new bulletW(_xcor-20, _ycor) );
+      game.addEnemyProjectile( p.new bulletW(_xcor-15, _ycor) );
+      game.addEnemyProjectile( p.new bulletW(_xcor-10, _ycor) );
+      game.addEnemyProjectile( p.new bulletW(_xcor-5, _ycor) );
+      game.addEnemyProjectile( p.new bulletW(_xcor, _ycor) );
+      game.addEnemyProjectile( p.new bulletW(_xcor+5, _ycor) );
+      game.addEnemyProjectile( p.new bulletW(_xcor+10, _ycor) );
+      game.addEnemyProjectile( p.new bulletW(_xcor+15, _ycor) );
+      game.addEnemyProjectile( p.new bulletW(_xcor+20, _ycor) );
     }
   }
   

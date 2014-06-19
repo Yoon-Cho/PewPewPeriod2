@@ -1,143 +1,194 @@
-public class Ticks {
-  int tick;
-  int scale;
+public class Ticks
+{
+  // Instance Variables
+  private int _startTime;
+  private int _ticks;
+  private int _scale;
+  private Game _game;
 
-  public Ticks() {
-    tick = 0;
-    scale = 1;
+  // Constructor
+  public Ticks(Game game)
+  {
+    _startTime = millis() / 1000;
+    _ticks = ( millis() / 1000 ) - _startTime;
+    _scale = 1;
+    _game = game;
   }
 
-  int getTick() {
-    return tick;
+  // Accesor Methods
+  public int getTicks() { return _ticks; }
+  public int getScale() { return _scale; }
 
-    void increase() {
-      tick++;
+  // Increase Ticks Method
+  private void increase() { _ticks = ( millis() / 1000 ) - _startTime; }
+
+  // Random Generator Method
+  private void randomGenerator()
+  {
+    int choice = int( random(10) );
+    Enemy e = new Enemy();
+    
+    switch( choice )
+    {
+      case 0: for (int x = 0; x < 5; x++)
+                _game.addEnemy(e.new Dud(100*x+200, 300));
+              break;
+      case 1: for (int x = 0; x < 5; x++)
+                _game.addEnemy(e.new Dud(100*x+200, 300));
+              break;
+      case 2: for (int x = 0; x < 5; x++)
+                _game.addEnemy(e.new Charger(100*x+200, 300, _game));
+              break;
+      case 3: for (int x = 0; x < 4; x++)
+                _game.addEnemy(e.new Boomerang(150*x+175, 300, _scale));
+              break;
+      case 4: for (int x = 0; x < 3; x++)
+                _game.addEnemy(e.new Shooter(200*x+200, 100, _scale));
+              break;
+      case 5: for (int x = 0; x < 2; x++)
+                _game.addEnemy(e.new Spinner(200*x+300, 50, _scale));
+              break;
+      case 6: for (int x = 0; x < 5; x++)
+                _game.addEnemy(e.new Shooter(100*x+200, 300, _scale));
+              break;
+      case 7: for (int x = 0; x < 5; x++)
+                _game.addEnemy(e.new Shooter(100*x+200, 100, _scale));
+              break;
+      case 8: for (int x = 0; x < 5; x++)
+                _game.addEnemy(e.new Charger(100*x+200, 300, _game));
+              for (int x = 0; x < 2; x++)
+                _game.addEnemy(e.new Spinner(200*x+300, 50, _scale));
+              break;
+      case 9: _game.addEnemy(e.new Waver(400, 200, _scale));
+              break;
     }
+  }
 
-    void randomGenerator() {
-      if (Random.nextInt(10) == 0) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Dud(true, 100*x+200, 300));
-      } else if (Random.nextInt(10) == 1) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Dud(false, 100*x+200, 300));
-      } else if (Random.nextInt(10) == 2) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Charger(100*x+200, 300));
-      } else if (Random.nextInt(10) == 3) {
-        for (int x = 0; x < 4; x++)
-          enemies.add(new Boomerang(150*x+175, 300, scale));
-      } else if (Random.nextInt(10) == 4) {
-        for (int x = 0; x < 3; x++)
-          enemies.add(new Shooter(200*x+200, 100, scale));
-      } else if (Random.nextInt(10) == 5) {
-        for (int x = 0; x < 2; x++)
-          ememies.add(new Spinner(200*x+300, 50, scale));
-      } else if (Random.nextInt(10) == 6) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Desecrator(100*x+200, 300, scale));
-      } else if (Random.nextInt(10) == 7) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Shooter(100*x+200, 100, scale));
-      } else if (Random.nextInt(10) == 8) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Charger(100*x+200, 300));
-        for (int x = 0; x < 2; x++)
-          ememies.add(new Spinner(200*x+300, 50, scale));
-      } else if (Random.nextInt(10) == 9) {
-        enemies.add(new Waver(400, 200, scale));
-      }
+  //The game will be 3? minutes long
+  //Each tick = 1 second
+  //How do Matt 60, 120, 180
+  public void process()
+  {
+    Enemy e = new Enemy();
+    increase();
+    
+    if (_ticks > 10 && _ticks < 290) 
+    {
+      if (_ticks % 10 == 3)
+        randomGenerator();
+      else if (_ticks % 10 == 6)
+        randomGenerator();
+      else if (_ticks % 10 == 9)
+        randomGenerator();
     }
+    
+    if (_ticks == 1)
+    {
+      _game.addEnemy(e.new Dud(210, 200));
+      _game.addEnemy(e.new Dud(590, 200));
+      _game.addEnemy(e.new Dud(310, 200));
+      _game.addEnemy(e.new Dud(490, 200));
+      _game.addEnemy(e.new Dud(410, 200));
+      _game.addEnemy(e.new Dud(390, 200));
+      _game.addEnemy(e.new Dud(510, 200));
+      _game.addEnemy(e.new Dud(290, 200));
+      _game.addEnemy(e.new Dud(610, 200));
+      _game.addEnemy(e.new Dud(190, 200));
+    }
+    else if (_ticks == 10)
+    {
+      _game.addEnemy(e.new Charger(160, 50, _game));
+      _game.addEnemy(e.new Charger(320, 50, _game));
+      _game.addEnemy(e.new Charger(480, 50, _game));
+      _game.addEnemy(e.new Charger(640, 50, _game));
+      _game.addEnemy(e.new Boomerang(300, 100, _scale));
+      _game.addEnemy(e.new Boomerang(500, 100, _scale));
+    }
+    else if (_ticks == 20)
+    {
+      for (int x = 0; x < 5; x++)
+        _game.addEnemy(e.new Shooter(100*x+200, 100, _scale));
+    }
+    else if (_ticks == 30)
+    {
+        for (int x = 0; x < 5; x++)
+          _game.addEnemy(e.new Shooter(100*x+200, 100, _scale));
+          
+        _game.addEnemy(e.new Waver(400, 200, _scale));
+    }
+    else if (_ticks == 40)
+    {
+      for (int x = 0; x < 5; x++)
+        _game.addEnemy(e.new Shooter(100*x+200, 100, _scale));
+    }
+    else if (_ticks == 50)
+      randomGenerator();
+    else if (_ticks == 60)
+    {
+      for (int x = 0; x < 5; x++)
+        _game.addEnemy(e.new Shooter(100*x+200, 100, _scale));
+      
+      _game.addEnemy(e.new Waver(400, 200, _scale));
+    }
+    else if (_ticks == 70)
+    {
+      for (int x = 0; x < 5; x++)
+          _game.addEnemy(e.new Shooter(100*x+200, 100, _scale));
+    }
+    else if (_ticks == 80)
+      randomGenerator();
+    else if (_ticks == 90)
+    {
+      for (int x = 0; x < 5; x++)
+        _game.addEnemy(e.new Shooter(100*x+200, 100, _scale));
+      
+      _game.addEnemy(e.new Waver(400, 200, _scale));
+    }
+    else if (_ticks == 100)
+    {
+      for (int x = 0; x < 5; x++)
+        _game.addEnemy(e.new Shooter(100*x+200, 100, _scale));
+    }
+    else if (_ticks == 110)
+      randomGenerator();
+    else if (_ticks == 120)
+    {
+      for (int x = 0; x < 5; x++)
+        _game.addEnemy(e.new Shooter(100*x+200, 100, _scale));
+      
+      _game.addEnemy(e.new Waver(400, 200, _scale));
+    }
+    else if (_ticks == 130)
+    {
+      for (int x = 0; x < 5; x++)
+        _game.addEnemy(e.new Shooter(100*x+200, 100, _scale));
+    }
+    else if (_ticks == 140)
+      randomGenerator();
+    else if (_ticks == 150)
+    {
+      for (int x = 0; x < 9; x++)
+        _game.addEnemy(e.new Shooter(50*x+200, 100, _scale));
+      
+      _game.addEnemy(e.new Waver(300, 150, _scale));
+      _game.addEnemy(e.new Waver(500, 150, _scale));
+    }
+    else if (_ticks == 170)
+    {
+      for (int x = 0; x < 5; x++)
+        _game.addEnemy(e.new Dud(100*x+200, 300));
+      for (int x = 0; x < 5; x++)
+        _game.addEnemy(e.new Dud(100*x+200, 200));
+    }
+    //else if (_ticks == 175)
+    else if (_ticks == 180)
+      _game.addEnemy(e.new Zamansky(_scale));
 
-    //The game will be 3? minutes long
-    //Each tick = 1 second
-    //How do Matt 60, 120, 180
-    void process() {
-      if (tick > 10 && tick < 290) {
-        if (tick % 10 == 3) {
-          randomGenerator();
-        } else if (tick % 10 == 6) {
-          randomGenerator();
-        } else if (tick % 10 == 9) {
-          randomGenerator();
-        }
-      }
-      if (tick == 1) {
-        enemies.add(new Dud(true, 210, 200));
-        enemies.add(new Dud(false, 590, 200));
-        enemies.add(new Dud(true, 310, 200));
-        enemies.add(new Dud(false, 490, 200));
-        enemies.add(new Dud(true, 410, 200));
-        enemies.add(new Dud(false, 390, 200));
-        enemies.add(new Dud(true, 510, 200));
-        enemies.add(new Dud(false, 290, 200));
-        enemies.add(new Dud(true, 610, 200));
-        enemies.add(new Dud(false, 190, 200));
-      } else if (tick == 10) {
-        enemies.add(new Charger(160, 50));
-        enemies.add(new Charger(320, 50));
-        enemies.add(new Charger(480, 50));
-        enemies.add(new Charger(640, 50));
-        enemies.add(new Boomerang(300, 100, scale));
-        enemies.add(new Boomerang(500, 100, scale));
-      } else if (tick == 20) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Shooter(100*x+200, 100, scale));
-      } else if (tick == 30) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Shooter(100*x+200, 100, scale));
-        enemies.add(new Waver(400, 200, scale));
-      } else if (tick == 40) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Desecrator(100*x+200, 100, scale));
-      } else if (tick == 50) {
-        randomGenerator();
-      } else if (tick == 60) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Shooter(100*x+200, 100, scale));
-        enemies.add(new Waver(400, 200, scale));
-      } else if (tick == 70) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Desecrator(100*x+200, 100, scale));
-      } else if (tick == 80) {
-        randomGenerator();
-      } else if (tick == 90) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Shooter(100*x+200, 100, scale));
-        enemies.add(new Waver(400, 200, scale));
-      } else if (tick == 100) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Desecrator(100*x+200, 100, scale));
-      } else if (tick == 110) {
-        randomGenerator();
-      } else if (tick == 120) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Shooter(100*x+200, 100, scale));
-        enemies.add(new Waver(400, 200, scale));
-      } else if (tick == 130) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Desecrator(100*x+200, 100, scale));
-      } else if (tick == 140) {
-        randomGenerator();
-      } else if (tick == 150) {
-        for (int x = 0; x < 9; x++)
-          enemies.add(new Shooter(50*x+200, 100, scale));
-        enemies.add(new Waver(300, 150, scale));
-        enemies.add(new Waver(500, 150, scale));
-      } else if (tick == 170) {
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Dud(true, 100*x+200, 300));
-        for (int x = 0; x < 5; x++)
-          enemies.add(new Dud(false, 100*x+200, 200));
-      } else if (tick == 175) {
-        int 1 = 1; //queue epic music dun Dun DUN
-      } else if (tick == 180)
-        enemies.add(new Zamansky());
-
-      if (enemies.size() == 0)
-        tick = 0;
-      scale += 0.5;
+    if ( _game.getEnemies().size() == 0)
+    {
+      _startTime = millis() / 1000;
+      _ticks = ( millis() / 1000 ) - _startTime;
+      _scale += 0.5;
     }
   }
 }
-

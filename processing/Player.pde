@@ -6,9 +6,9 @@ public class Player extends Unit
   // Constructors
   public Player()
   {
-    super(1, 1, width / 2, height * 3 / 4, 100, 100, 100, 100, "player.jpg");
+    super(50, 1, width / 2, height * 3 / 4, 100, 100, 100, 100, "player.jpg");
     
-    _bombs = 5;
+    _bombs = 100;
   }
   
   public Player(int health, int damage, int xcor, int ycor, int xmove, int ymove, int w, int h, String image, int bombs)

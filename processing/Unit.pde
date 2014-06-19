@@ -12,6 +12,7 @@ public class Unit
   protected int _height;
 
   // Constructor
+  public Unit() {}
   public Unit(int health, int damage, int xcor, int ycor, int xmove, int ymove, int w, int h, String image)
   {
     _health = health;

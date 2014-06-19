@@ -3,13 +3,9 @@ import ddf.minim.*;
 // Variables
 Intro _intro;
 Menu _menu;
-
-Minim _minim;
-AudioPlayer _player;
-
-int _state = -1;
-
 Game _game;
+
+int _state = 5;
 
 // FullScreen = On
 boolean sketchFullScreen() { return true; }
@@ -22,7 +18,6 @@ void setup()
   
   _intro = new Intro(width, height);
   _menu = new Menu(width, height);
-  _minim = new Minim(this);
   _game = new Game();
 }
 
@@ -37,9 +32,6 @@ void draw()
     case 1: if ( _intro.fadeOut() );
             else
             {
-              _player = _minim.loadFile("menu_theme.mp3");
-              _player.play();
-              _player.loop();
               _state++;
             }
             break;
