@@ -1,4 +1,4 @@
-public class Enemy extends Unit
+ public class Enemy extends Unit
 {
   // Constructors
   public Enemy()
@@ -25,6 +25,11 @@ public class Enemy extends Unit
     {
       super(1, 1, xcor, ycor, 0, 0, 25, 25, "Dud.png");
     }
+    
+    public void shoot(Game game){
+      
+    }
+    
   }
 
   // Charger Class Enemy
@@ -32,7 +37,10 @@ public class Enemy extends Unit
   {
     public Charger(int xcor, int ycor, Game game)
     {
-      super(1, 1, xcor, ycor, ( _game.getPlayer().getXCor() - xcor ) / 5, ( _game.getPlayer().getYCor() - ycor ) / 5, 50, 50, "Charger.png");
+      super(1, 1, xcor, ycor, ( _game.getPlayer().getXCor() - xcor ) / 30, ( _game.getPlayer().getYCor() - ycor ) / 30, 50, 50, "Charger.png");
+    }
+    public void shoot(Game game){
+      
     }
   }
 
@@ -41,7 +49,7 @@ public class Enemy extends Unit
   {
     public Boomerang(int xcor, int ycor, int scale)
     {
-      super(5*scale, 1, xcor, ycor, 0, 0, 75, 75, "Boomerang.png");
+      super(5*scale, 1, xcor, ycor, 0, 3, 75, 75, "Boomerang.png");
     }
   }
 
@@ -50,7 +58,7 @@ public class Enemy extends Unit
   {
     public Shooter(int xcor, int ycor, int scale)
     {
-      super(10*scale, 1, xcor, ycor, 0, -3, 50, 75, "Shooter.png");
+      super(10*scale, 1, xcor, ycor, 0, 1, 50, 75, "Shooter.png");
     }
     
     public void shoot(Game game)
@@ -74,7 +82,7 @@ public class Enemy extends Unit
   {
     public Waver(int xcor, int ycor, int scale)
     {
-      super(100*scale, 1, xcor, ycor, 0, -3, 150, 65, "Waver.png");
+      super(100*scale, 1, xcor, ycor, 0, 0, 150, 65, "Waver.png");
     }
     
     public void shoot(Game game)
