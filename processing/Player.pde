@@ -6,7 +6,7 @@ public class Player extends Unit
   // Constructors
   public Player()
   {
-    super(50, 1, width / 2, height * 3 / 4, 100, 100, 100, 100, "player.jpg");
+    super(50, 1, width / 2, height * 3 / 4, 50, 50, 100, 100, "player.jpg");
     
     _bombs = 100;
   }

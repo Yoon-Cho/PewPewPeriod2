@@ -38,7 +38,7 @@ public class Projectile extends Unit
   {
     public bulletW(int xcor, int ycor)
     {
-      super(3, xcor, ycor, 0, 5, 15, 15, "bulletW.png ");
+      super(3, xcor, ycor, 0, 5, 15, 15, "bulletW.png");
     }
   }
   

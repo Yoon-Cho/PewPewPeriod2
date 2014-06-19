@@ -23,7 +23,7 @@
   {
     public Dud(int xcor, int ycor)
     {
-      super(1, 1, xcor, ycor, 0, 0, 25, 25, "Dud.png");
+      super(1, 1, xcor, ycor, 0, 0, 50, 50, "Dud.png");
     }
     
     public void shoot(Game game){

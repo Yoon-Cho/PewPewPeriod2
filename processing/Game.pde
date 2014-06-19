@@ -174,7 +174,7 @@ public class Game
       break;
 
     case ' ':
-      _playerProjectiles.add( new Projectile( _player.getDamage(), _player.getXCor(), _player.getYCor(), 0, -100, 50, 50, "projectile.jpg" ) );
+      _playerProjectiles.add( new Projectile( _player.getDamage(), _player.getXCor(), _player.getYCor(), 0, -100, 50, 50 , "projectile.jpg" ) );
       break;
     }
 
