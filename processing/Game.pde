@@ -174,7 +174,7 @@ public class Game
       break;
 
     case ' ':
-      _playerProjectiles.add( new Projectile( _player.getDamage(), _player.getXCor(), _player.getYCor(), 0, -100, 50, 50 , "projectile.jpg" ) );
+      _playerProjectiles.add(_player.shoot());
       break;
     }
 
@@ -258,13 +258,14 @@ public class Game
     {
       if ( e.getHealth() <= 0 )
         remove.add(e);
+      _player.powerup();
     }
 
     _enemies.removeAll(remove);
   }
 
-  private void removeAll(){
-   _enemies.clear(); 
+  private void removeAll() {
+    _enemies.clear();
   }
 
   // Add Methods
@@ -280,11 +281,8 @@ public class Game
   {
     for (Enemy e : _enemies)
     {
-      if ( int( random(100) ) < 2 ) {
-        if (BulletTime < 100)
-          BulletTime++;
-        else
-          e.shoot(this);
+      if ( int( random(500) ) < 2 ) {
+        e.shoot(this);
       }
     }
   }

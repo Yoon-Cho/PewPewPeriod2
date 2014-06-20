@@ -99,12 +99,12 @@ public class Ticks
       _game.addEnemy(e.new Dud(width/5*4, 200));
     } else if (_ticks == 10)
     {
-      _game.addEnemy(e.new Charger(height/5, 50, _game));
-      _game.addEnemy(e.new Charger(height/5*2, 50, _game));
-      _game.addEnemy(e.new Charger(height/5*3, 50, _game));
-      _game.addEnemy(e.new Charger(height/5*4, 50, _game));
-      _game.addEnemy(e.new Boomerang(height/3, 100, _scale));
-      _game.addEnemy(e.new Boomerang(height/3*2, 100, _scale));
+      _game.addEnemy(e.new Charger(width/5, 50, _game));
+      _game.addEnemy(e.new Charger(width/5*2, 50, _game));
+      _game.addEnemy(e.new Charger(width/5*3, 50, _game));
+      _game.addEnemy(e.new Charger(width/5*4, 50, _game));
+      _game.addEnemy(e.new Boomerang(width/3, 100, _scale));
+      _game.addEnemy(e.new Boomerang(width/3*2, 100, _scale));
     } else if (_ticks == 20)
     {
       for (int x = 0; x < 5; x++)
@@ -114,7 +114,7 @@ public class Ticks
       for (int x = 0; x < 5; x++)
         _game.addEnemy(e.new Shooter(width/8*(x+2), 200, _scale));
 
-      _game.addEnemy(e.new Waver(height/2, 200, _scale));
+      _game.addEnemy(e.new Waver(width/2, 200, _scale));
     } else if (_ticks == 40)
     {
       for (int x = 0; x < 5; x++)
@@ -126,7 +126,7 @@ public class Ticks
       for (int x = 0; x < 5; x++)
         _game.addEnemy(e.new Shooter(width/8*(x+2), 200, _scale));
 
-      _game.addEnemy(e.new Waver(height/2, 200, _scale));
+      _game.addEnemy(e.new Waver(width/2, 200, _scale));
     } else if (_ticks == 70)
     {
       for (int x = 0; x < 5; x++)
@@ -138,7 +138,7 @@ public class Ticks
       for (int x = 0; x < 5; x++)
         _game.addEnemy(e.new Shooter(width/8*(x+2), 200, _scale));
 
-      _game.addEnemy(e.new Waver(height/2, 200, _scale));
+      _game.addEnemy(e.new Waver(width/2, 200, _scale));
     } else if (_ticks == 100)
     {
       for (int x = 0; x < 5; x++)
@@ -150,7 +150,7 @@ public class Ticks
       for (int x = 0; x < 5; x++)
         _game.addEnemy(e.new Shooter(width/8*(x+2), 200, _scale));
 
-      _game.addEnemy(e.new Waver(height/2, 200, _scale));
+      _game.addEnemy(e.new Waver(width/2, 200, _scale));
     } else if (_ticks == 130)
     {
       for (int x = 0; x < 5; x++)
@@ -162,8 +162,8 @@ public class Ticks
       for (int x = 0; x < 9; x++)
         _game.addEnemy(e.new Shooter(width/8*(x+2), 200, _scale));
 
-      _game.addEnemy(e.new Waver(height/3, 150, _scale));
-      _game.addEnemy(e.new Waver(height/3*2, 150, _scale));
+      _game.addEnemy(e.new Waver(width/3, 150, _scale));
+      _game.addEnemy(e.new Waver(width/3*2, 150, _scale));
     } else if (_ticks == 170)
     {
       for (int x = 0; x < 5; x++)
@@ -178,7 +178,7 @@ public class Ticks
     if ( _game.getEnemies().size() == 0)
     {
       _startTime = millis() / 1000;
-      _ticks = ( millis() / 1000 ) - _startTime;
+      _ticks = ( millis() / 1000) - _startTime;
       _scale += 0.5;
     }
   }

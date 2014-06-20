@@ -10,27 +10,27 @@ public class Projectile extends Unit
   // Bullet1 Projectile
   public class bullet1 extends Projectile
   {
-    public bullet1(int xcor, int ycor)
+    public bullet1(int damage, int xcor, int ycor)
     {
-      super(1, xcor, ycor, 0, 5, 5, 15, "bullet1.png");
+      super(damage, xcor, ycor, 0, 5, 5, 10, "bullet1.png");
     }
   }
   
   // Bullet2 Projectile
   public class bullet2 extends Projectile
   {
-    public bullet2(int xcor, int ycor)
+    public bullet2(int damage, int xcor, int ycor)
     {
-      super(2, xcor, ycor, 0, 5, 15, 15, "bullet2.png");
+      super(damage, xcor, ycor, 0, 5, 10, 10, "bullet2.png");
     }
   }
   
   // Bullet3 Projectile
   public class bullet3 extends Projectile
   {
-    public bullet3(int xcor, int ycor)
+    public bullet3(int damage, int xcor, int ycor)
     {
-      super(3, xcor, ycor, 0, 5, 20, 20, "bullet3.png");
+      super(damage, xcor, ycor, 0, 5, 15, 15, "bullet3.png");
     }
   }
   

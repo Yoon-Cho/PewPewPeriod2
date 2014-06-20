@@ -13,7 +13,7 @@ boolean sketchFullScreen() { return true; }
 // Setup Method
 void setup()
 {
-  size(displayWidth, displayHeight, P2D);
+  size(800,1000, P2D);
   background(0);
   
   _intro = new Intro(width, height);

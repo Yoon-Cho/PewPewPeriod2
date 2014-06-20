@@ -15,7 +15,7 @@
   public void shoot(Game game)
   {
     Projectile p = new Projectile();
-    game.addEnemyProjectile(p.new bullet1(_xcor, _ycor) );
+    game.addEnemyProjectile(p.new bullet1(1,_xcor, _ycor) );
   }
 
   // Dud Class Enemy
@@ -33,11 +33,11 @@
   }
 
   // Charger Class Enemy
-  public class Charger extends Enemy
+  public class Charger  extends Enemy
   {
     public Charger(int xcor, int ycor, Game game)
     {
-      super(1, 1, xcor, ycor, ( _game.getPlayer().getXCor() - xcor ) / 30, ( _game.getPlayer().getYCor() - ycor ) / 30, 50, 50, "Charger.png");
+      super(1, 1, xcor, ycor, ( _game.getPlayer().getXCor() - xcor ) / 100, ( _game.getPlayer().getYCor() - ycor ) / 100  , 50, 50, "Charger.png");
     }
     public void shoot(Game game){
       
@@ -64,7 +64,7 @@
     public void shoot(Game game)
     {
       Projectile p = new Projectile();
-      game.addEnemyProjectile( p.new bullet3( _xcor, _ycor));
+      game.addEnemyProjectile( p.new bullet3(1, _xcor, _ycor));
     }
   }
 
