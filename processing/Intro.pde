@@ -2,7 +2,7 @@ public class Intro
 {
   // Instance Variable(s)
   private PImage _intro;
-  private int _tint;
+  private double _tint;
   
   // Constructor
   public Intro(int w, int h)
@@ -17,14 +17,14 @@ public class Intro
   {
     background(0);
     
-    tint(255, _tint);
+    tint(255, (int)_tint);
     image(_intro, 0, 0);
     
     if (_tint >= 255)
       return false;
     else
     {
-      _tint += 1;
+      _tint += 1.5;
       return true;
     }
   }
@@ -33,14 +33,14 @@ public class Intro
   public boolean fadeOut()
   {
     background(0);
-    tint(255, _tint);
+    tint(255, (int)_tint);
     image(_intro, 0, 0);
     
     if (_tint <= 0)
       return false;
     else
     {
-      _tint -= 1;
+      _tint -= 1.5;
       return true;
     }
   }

@@ -10,7 +10,7 @@ public class Ticks
   public Ticks(Game game)
   {
     _startTime = millis() / 1000;
-    _ticks = ( millis() / 1000 ) - _startTime;
+    _ticks = _startTime;
     _scale = 1;
     _game = game;
   }
@@ -42,7 +42,7 @@ public class Ticks
       break;
     case 1: 
       for (int x = 0; x < 5; x++)
-        _game.addEnemy(e.new Dud(width/8*(x+2), height/3));
+        _game.addEnemy(e.new Charger(width/8*(x+2), height/3, _game));
       break;
     case 2: 
       for (int x = 0; x < 5; x++)
@@ -87,7 +87,7 @@ public class Ticks
     {
       if (_ticks % 10 == 4)
         randomGenerator();
-      else if (_ticks % 10 == 7)
+      else if (_ticks % 10 == 8)
         randomGenerator();
     }
 
@@ -172,10 +172,12 @@ public class Ticks
         _game.addEnemy(e.new Dud(width/8*(x+2), height/3));
     } else if (_ticks == 175) { 
       _game.removeAll();
-    } else if (_ticks == 180)
+    } else if (_ticks == 180) {
+      _game.noBombs();
       _game.addEnemy(e.new Zamansky(_scale));
+    }
 
-    if ( _game.getEnemies().size() == 0)
+    if ( _game.getEnemies().size() == 0 && _ticks > 180)
     {
       _startTime = millis() / 1000;
       _ticks = ( millis() / 1000) - _startTime;

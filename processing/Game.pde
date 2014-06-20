@@ -7,7 +7,7 @@ public class Game
   private ArrayList<Projectile> _playerProjectiles;
   private ArrayList<Projectile> _enemyProjectiles;
   private int BulletTime;
-  
+
   private PImage _background;
   private PImage _endScreen;
   private int _tint;
@@ -21,10 +21,10 @@ public class Game
     _enemyProjectiles = new ArrayList<Projectile>();
 
     _player = new Player();
-    
+
     _background = loadImage("game_background.jpg");
     _endScreen = loadImage("lose.jpg");
-    
+
     _background.resize(width, height);
     _endScreen.resize(width, height);
   }
@@ -49,7 +49,7 @@ public class Game
   // Play Method
   public boolean play()
   {
-    background(0);
+    background(_background);
     _ticks.process();
     checkBoundaries();
     removeDeadEnemies();
@@ -58,7 +58,7 @@ public class Game
     fireOnPlayer();
     move();
     display();
-    
+
     return gameOver();
   }
 
@@ -237,8 +237,9 @@ public class Game
 
         if ( ( ( centerX >= e.getXCor() ) && ( centerX <= ( e.getXCor() + e.getWidth() ) ) ) &&
           ( ( centerY >= e.getYCor() ) && ( centerY <= ( e.getYCor() + e.getHeight() ) ) )
-          )
+          ) {
           e.modifyHealth( p.getDamage() * -1 );
+        }
       }
     }
   }
@@ -247,6 +248,16 @@ public class Game
   private void hitPlayer()
   {
     for (Projectile p : _enemyProjectiles)
+    {
+      int centerX = p.getXCor() + ( p.getWidth() / 2 );
+      int centerY = p.getYCor() + ( p.getWidth() / 2 );
+
+      if ( ( ( centerX >= _player.getXCor() ) && ( centerX <= ( _player.getXCor() + _player.getWidth() ) ) ) &&
+        ( ( centerY >= _player.getYCor() ) && ( centerY <= ( _player.getYCor() + _player.getHeight() ) ) )
+        )
+        _player.modifyHealth( p.getDamage() * -1 );
+    }
+    for (Enemy p : _enemies)
     {
       int centerX = p.getXCor() + ( p.getWidth() / 2 );
       int centerY = p.getYCor() + ( p.getWidth() / 2 );
@@ -296,6 +307,10 @@ public class Game
     }
   }
 
+  public void noBombs() {
+    _player.setBombs(0);
+  }
+
   // Game Over Method
   private boolean gameOver()
   {
@@ -306,15 +321,15 @@ public class Game
 
     return response;
   }
-  
+
   // End Game Method
   public boolean end()
   {
     background(0);
-    
+
     tint(255, _tint);
     image(_endScreen, 0, 0);
-    
+
     if (_tint >= 255)
       return false;
     else
