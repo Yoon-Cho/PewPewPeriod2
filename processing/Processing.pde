@@ -58,12 +58,12 @@ void draw()
               _state++;
               
               _player.pause();
-              //_player = _minim.loadFile("");
-              //_player.play();
-              //_player.loop();
+              _player = _minim.loadFile("game_theme.mp3");
+              _player.play();
+              _player.loop();
             }
             break;
-    case 5: if ( _game.play() );
+    case 5: if (! _game.play() );
             else { _state++; }
             break;
     case 6: if ( _game.end() );

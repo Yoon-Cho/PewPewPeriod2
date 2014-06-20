@@ -10,6 +10,7 @@ public class Game
   
   private PImage _background;
   private PImage _endScreen;
+  private int _tint;
 
   // Constructor
   public Game()
@@ -21,8 +22,8 @@ public class Game
 
     _player = new Player();
     
-    _background = loadImage("");
-    _endScreen = loadImage("");
+    _background = loadImage("game_background.jpg");
+    _endScreen = loadImage("lose.jpg");
     
     _background.resize(width, height);
     _endScreen.resize(width, height);
