@@ -50,9 +50,14 @@ public class Menu
   {
     background(_menu);
     
+    
     textAlign(CENTER);
     textSize(100);
-    text("PEW PEW", width / 2, height / 4);
+    text("M.A.D.", width / 2, height / 5+50);
+    
+    textAlign(CENTER);
+    textSize(53);
+    text("Mutually Assured Destruction", width / 2, height / 3);
     
     PImage launch = loadImage("launch.jpg");
     launch.resize(500, 500);
