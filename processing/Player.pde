@@ -40,14 +40,22 @@ public class Player extends Unit
   }
 
   public Projectile shoot() {
+    Projectile p = new Projectile();
+    
     if (_power >= 100){
-      Projectile b = new bullet3(_damage, xcor, ycor);
+      Projectile.bullet3 b = p.new bullet3(_damage, _xcor, _ycor);
+      b.setXMove( b.getXMove() * -1 );
+      b.setYMove( b.getYMove() * -1 ); 
       return b;
     }else if (_power >= 30){
-      Projectile b = new bullet2(_damage, xcor, ycor);
+      Projectile.bullet2 b = p.new bullet2(_damage, _xcor, _ycor);
+      b.setXMove( b.getXMove() * -1 );
+      b.setYMove( b.getYMove() * -1 );
       return b;
     }else{
-      Projectile b = new bullet1(_damage, xcor, ycor);
+      Projectile.bullet1 b = p.new bullet1(_damage, _xcor, _ycor);
+      b.setXMove( b.getXMove() * -1 );
+      b.setYMove( b.getYMove() * -1 );
       return b;
     }
   }

@@ -5,10 +5,10 @@ Intro _intro;
 Menu _menu;
 Game _game;
 
-int _state = 5;
+int _state;
 
-// FullScreen = On
-boolean sketchFullScreen() { return true; }
+Minim _minim;
+AudioPlayer _player;
 
 // Setup Method
 void setup()
@@ -19,6 +19,8 @@ void setup()
   _intro = new Intro(width, height);
   _menu = new Menu(width, height);
   _game = new Game();
+  
+  _minim = new Minim(this);
 }
 
 // Draw Method
@@ -30,13 +32,16 @@ void draw()
             else { _state++; }
             break;
     case 1: if ( _intro.fadeOut() );
+            else { _state++; }
+            break;
+    case 2: if ( _menu.fadeIn() );
             else
             {
               _state++;
+              
+              _player = _minim.loadFile("menu_theme.mp3");
+              _player.loop();
             }
-            break;
-    case 2: if ( _menu.fadeIn() );
-            else { _state++; }
             break;
     case 3: _menu.display();
             switch( _menu.selected() )
@@ -46,9 +51,23 @@ void draw()
             }
             break;
     case 4: if ( _menu.fadeOut() );
+            else
+            {
+              noTint();
+              
+              _state++;
+              
+              _player.pause();
+              //_player = _minim.loadFile("");
+              //_player.play();
+              //_player.loop();
+            }
+            break;
+    case 5: if ( _game.play() );
             else { _state++; }
             break;
-    case 5: _game.play();
+    case 6: if ( _game.end() );
+            else { _state++; }
             break;
     default: if (mousePressed) {exit();}
              break;

@@ -7,6 +7,9 @@ public class Game
   private ArrayList<Projectile> _playerProjectiles;
   private ArrayList<Projectile> _enemyProjectiles;
   private int BulletTime;
+  
+  private PImage _background;
+  private PImage _endScreen;
 
   // Constructor
   public Game()
@@ -17,6 +20,12 @@ public class Game
     _enemyProjectiles = new ArrayList<Projectile>();
 
     _player = new Player();
+    
+    _background = loadImage("");
+    _endScreen = loadImage("");
+    
+    _background.resize(width, height);
+    _endScreen.resize(width, height);
   }
 
   // Accessor Methods
@@ -37,11 +46,8 @@ public class Game
   }
 
   // Play Method
-  public void play()
+  public boolean play()
   {
-    if ( gameOver() )
-      exit();
-
     background(0);
     _ticks.process();
     checkBoundaries();
@@ -51,6 +57,8 @@ public class Game
     fireOnPlayer();
     move();
     display();
+    
+    return gameOver();
   }
 
 
@@ -293,12 +301,26 @@ public class Game
     boolean response = false;
 
     if ( _player.getHealth() <= 0 )
-    {
-      print("You Lose.");
       response = true;
-    }
 
     return response;
+  }
+  
+  // End Game Method
+  public boolean end()
+  {
+    background(0);
+    
+    tint(255, _tint);
+    image(_endScreen, 0, 0);
+    
+    if (_tint >= 255)
+      return false;
+    else
+    {
+      _tint += 1;
+      return true;
+    }
   }
 }
 
